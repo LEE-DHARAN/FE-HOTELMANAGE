@@ -1,9 +1,12 @@
-const App = () => {
+import React from "react";
+import Router from "./router/Router";
+
+function App() {
   return (
-    <>
-      <h1 className="text-4xl text-center text-blue-500">hello world!</h1>
-    </>
-  )
+    <div className="flex flex-col min-h-screen">
+      <Router />
+    </div>
+  );
 }
 
 export default App;
