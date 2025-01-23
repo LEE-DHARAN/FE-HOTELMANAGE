@@ -9,6 +9,7 @@ import Maintenance from "../pages/Maintenance";
 import Billing from "../pages/Billing";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
+import RoomCard from "../components/RoomCard";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/rooms" element={<Rooms />} />
+          <Route path="/room" element={<RoomCard />} />
           <Route path="/residents" element={<Residents />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/billing" element={<Billing />} />

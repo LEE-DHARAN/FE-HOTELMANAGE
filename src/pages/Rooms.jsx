@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 function Rooms() {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/rooms")
+      .get("http://localhost:3001/api/rooms")
       .then((response) => setRooms(response.data))
       .catch((error) => console.error("Error fetching rooms:", error));
   }, []);

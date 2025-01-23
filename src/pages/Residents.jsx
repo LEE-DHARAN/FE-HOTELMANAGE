@@ -16,13 +16,13 @@ const Resident = () => {
     const fetchResidentData = async () => {
       // Simulate a resident data object
       const data = {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        contact: "9876543210",
-        emergencyContact: "9876543210",
-        checkInDate: "2025-01-10",
-        checkOutDate: "2025-06-10",
-        roomNumber: "101",
+        name: "",
+        email: "",
+        contact: "",
+        emergencyContact: "",
+        checkInDate: "",
+        checkOutDate: "",
+        roomNumber: "",
       };
       setResidentData(data);
       setName(data.name);

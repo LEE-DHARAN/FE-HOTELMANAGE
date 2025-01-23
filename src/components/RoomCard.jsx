@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 const RoomCard = ({ room, onRoomAction }) => {
   const [status, setStatus] = useState(room.status);
 

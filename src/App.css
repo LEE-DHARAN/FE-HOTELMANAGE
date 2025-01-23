@@ -5,8 +5,8 @@ body {
 }
 
 nav {
-  background-color: #333;
-  color: white;
+  background-color: #e8d9d9;
+  color: rgb(221, 27, 27);
   padding: 10px;
 }
 
@@ -21,12 +21,12 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: rgb(222, 21, 21);
   text-decoration: none;
 }
 
 h1 {
-  color: #333;
+  color: #070707;
 }
 
 button {
