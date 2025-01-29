@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../services/api";
+import api from "../../services/api";
 
 const CreateBilling = () => {
   const [residentId, setResidentId] = useState("");
@@ -17,7 +17,7 @@ const CreateBilling = () => {
         amount,
         dueDate,
       });
-      // Redirect to billing list or show success message
+     
     } catch (err) {
       setError("Failed to create billing record");
     }

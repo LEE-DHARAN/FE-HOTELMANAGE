@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/rooms"; // Adjust according to your backend setup
+const API_URL = "http://localhost:3001/api/rooms"; 
 
 // Fetch all available rooms
 export const getAvailableRooms = async () => {
@@ -35,7 +35,7 @@ export const createRoom = async (roomData) => {
   }
 };
 
-// Update room status (available or occupied)
+// Update room status 
 export const updateRoomStatus = async (statusData) => {
   try {
     const response = await axios.put(`${API_URL}/status`, statusData);

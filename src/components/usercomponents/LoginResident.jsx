@@ -1,11 +1,9 @@
-// LoginResident.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginResident = () => {
-  const history = useHistory();
-
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,11 +17,11 @@ const LoginResident = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/login",
+        "http://localhost:3001/api/login", 
         formData
       );
       localStorage.setItem("token", response.data.token);
-      history.push("/dashboard"); // redirect to dashboard after login
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error.response?.data?.msg || error);
     }

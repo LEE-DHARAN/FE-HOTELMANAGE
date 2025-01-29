@@ -1,14 +1,32 @@
 import React, { useEffect, useState } from "react";
-import api from "../services/api"; // Assuming you've set up API calls
+import api from "../../services/api"; 
+import { useNavigate } from "react-router-dom";
 
 const BillingList = () => {
   const [billingRecords, setBillingRecords] = useState([]);
   const [loading, setLoading] = useState(true);
 
+ const navigate = useNavigate(); 
+
+ const handleViewBilling = (id) => {
+      navigate(`/billing/${id}`);
+ };
+
+ const handleDeleteBilling = async (id) => {
+   try {
+     await api.delete(`/billing/${id}`);
+     setBillingRecords(billingRecords.filter((billing) => billing._id !== id));
+   } catch (error) {
+     console.error("Error deleting billing record", error);
+   }
+ };
+
+
+
   useEffect(() => {
     const fetchBillingRecords = async () => {
       try {
-        const response = await api.get("/billing"); // Assuming `/billing` is the route to fetch all billing records
+        const response = await api.get("/billing"); 
         setBillingRecords(response.data);
       } catch (error) {
         console.error("Error fetching billing records", error);
@@ -63,18 +81,7 @@ const BillingList = () => {
     </div>
   );
 
-  const handleViewBilling = (id) => {
-    // Logic to navigate to BillingDetails page
-  };
-
-  const handleDeleteBilling = async (id) => {
-    try {
-      await api.delete(`/billing/${id}`);
-      setBillingRecords(billingRecords.filter((billing) => billing._id !== id));
-    } catch (error) {
-      console.error("Error deleting billing record", error);
-    }
-  };
+ 
 };
 
 export default BillingList;

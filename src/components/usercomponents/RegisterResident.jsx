@@ -1,10 +1,9 @@
-// RegisterResident.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterResident = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
     name: "",
@@ -22,11 +21,11 @@ const RegisterResident = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/register",
+        "http://localhost:3001/api/register", 
         formData
       );
       localStorage.setItem("token", response.data.token);
-      history.push("/dashboard"); // redirect to dashboard after registration
+      navigate("/dashboard"); 
     } catch (error) {
       console.error(
         "Error registering:",

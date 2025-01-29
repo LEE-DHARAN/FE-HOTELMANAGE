@@ -1,20 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import BillingList from "./components/BillingList";
-import CreateBilling from "./components/CreateBilling";
-import BillingDetails from "./components/BillingDetails";
-import UpdateBillingStatus from "./components/UpdateBillingStatus";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BillingList from "../components/billingComponents/BillingList";
+import CreateBilling from "../components/billingComponents/CreateBilling";
+import BillingDetails from "../components/billingComponents/BillingDetails";
+import UpdateBillingStatus from "../components/billingComponents/UpdateBillingStatus";
 
 const BillingManagementRoutes = () => {
   return (
-    <Router>
+    
       <Routes>
-        <Route path="/billing" element={<BillingList />} />
-        <Route path="/billing/create" element={<CreateBilling />} />
-        <Route path="/billing/:id" element={<BillingDetails />} />
-        <Route path="/billing/update/:id" element={<UpdateBillingStatus />} />
+        <Route path="" element={<BillingList />} />
+        <Route path="create" element={<CreateBilling />} />
+        <Route path=":id" element={<BillingDetails />} />
+        <Route path="update/:id" element={<UpdateBillingStatus />} />
       </Routes>
-    </Router>
+    
   );
 };
 

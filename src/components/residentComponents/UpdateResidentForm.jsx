@@ -15,7 +15,7 @@ const UpdateResidentForm = ({
 
   useEffect(() => {
     if (residentIdToUpdate) {
-      // Fetch resident data by ID when a resident is selected for updating
+      
       axios
         .get(`/resident/${residentIdToUpdate}`)
         .then((response) => {

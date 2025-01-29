@@ -14,7 +14,7 @@ const CreateResidentForm = ({ setResidents, setError, setSuccessMessage }) => {
     setSuccessMessage(""); 
 
     try {
-      // Sending data to the backend to create the resident
+      
       const response = await api.post("/resident", {
         name,
         contact,
