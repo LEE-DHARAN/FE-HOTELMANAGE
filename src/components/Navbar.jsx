@@ -15,7 +15,7 @@ function Navbar() {
             Dashboard
           </Link>
           <Link
-            to="/rooms"
+            to="/rooms/available"
             className="hover:text-blue-300 transition-colors duration-300"
           >
             Rooms

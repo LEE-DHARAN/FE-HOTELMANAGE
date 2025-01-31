@@ -1,11 +1,11 @@
-import axios from "axios";
 
+import api from "../services/api";
 const API_URL = "http://localhost:3001/api/rooms"; 
 
 // Fetch all available rooms
 export const getAvailableRooms = async () => {
   try {
-    const response = await axios.get(`${API_URL}/available`);
+    const response = await api.get(`rooms/available`);
     return response.data;
   } catch (error) {
     console.error("Error fetching available rooms:", error);
@@ -16,7 +16,7 @@ export const getAvailableRooms = async () => {
 // Allocate a room to a resident
 export const allocateRoom = async (roomData) => {
   try {
-    const response = await axios.post(`${API_URL}/allocate`, roomData);
+    const response = await api.post(`${API_URL}/allocate`, roomData);
     return response.data;
   } catch (error) {
     console.error("Error allocating room:", error);
@@ -27,7 +27,7 @@ export const allocateRoom = async (roomData) => {
 // Create a new room
 export const createRoom = async (roomData) => {
   try {
-    const response = await axios.post(API_URL, roomData);
+    const response = await api.post(API_URL, roomData);
     return response.data;
   } catch (error) {
     console.error("Error creating room:", error);
@@ -38,7 +38,7 @@ export const createRoom = async (roomData) => {
 // Update room status 
 export const updateRoomStatus = async (statusData) => {
   try {
-    const response = await axios.put(`${API_URL}/status`, statusData);
+    const response = await api.put(`${API_URL}/status`, statusData);
     return response.data;
   } catch (error) {
     console.error("Error updating room status:", error);
@@ -49,7 +49,7 @@ export const updateRoomStatus = async (statusData) => {
 // Delete a room
 export const deleteRoom = async (roomNumber) => {
   try {
-    const response = await axios.delete(`${API_URL}/${roomNumber}`);
+    const response = await api.delete(`${API_URL}/${roomNumber}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting room:", error);

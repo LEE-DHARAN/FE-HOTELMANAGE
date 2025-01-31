@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterResident from "../components/usercomponents/RegisterResident";
 import LoginResident from "../components/usercomponents/LoginResident";
 import LogoutResident from "../components/usercomponents/LogoutResident";
-import Dashboard from "../pages/Dashboard"; 
+import Dashboard from "../components/Dashboard"; 
 
 const UserRoutes = ()=> {
   return (
