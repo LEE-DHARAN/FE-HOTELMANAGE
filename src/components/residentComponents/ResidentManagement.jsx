@@ -13,7 +13,7 @@ const ResidentManagement = () => {
     <div className="container mx-auto mt-5">
       <h2 className="text-2xl font-bold mb-4">Resident Management</h2>
 
-      {/* Buttons to trigger actions */}
+     
       <div className="flex gap-4 mb-4">
         <button onClick={() => setShowForm(true)} className="bg-blue-500 text-white px-4 py-2 rounded" >
           Create Resident
@@ -25,11 +25,11 @@ const ResidentManagement = () => {
           Delete Resident
         </button>
       </div>
-      {/* Toggle between list of residents or resident form */}
+     
       {showForm ? (
         <ResidentForm
           closeForm={closeForm}
-          setResidents={setResidents} // Pass setResidents
+          setResidents={setResidents} 
           setSuccessMessage={setSuccessMessage}
         />
       ) : (

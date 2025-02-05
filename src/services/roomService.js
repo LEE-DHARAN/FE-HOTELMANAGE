@@ -27,7 +27,7 @@ export const allocateRoom = async (roomData) => {
 // Create a new room
 export const createRoom = async (roomData) => {
   try {
-    const response = await api.post(API_URL, roomData);
+    const response = await api.post(`${API_URL}`, roomData);
     return response.data;
   } catch (error) {
     console.error("Error creating room:", error);
@@ -36,9 +36,9 @@ export const createRoom = async (roomData) => {
 };
 
 // Update room status 
-export const updateRoomStatus = async (statusData) => {
+export const updateRoomStatus = async (roomNumber,statusData) => {
   try {
-    const response = await api.put(`${API_URL}/status`, statusData);
+    const response = await api.put(`${API_URL}/${roomNumber}/status`, statusData);
     return response.data;
   } catch (error) {
     console.error("Error updating room status:", error);
@@ -56,3 +56,16 @@ export const deleteRoom = async (roomNumber) => {
     throw error;
   }
 };
+
+// In roomService.js
+
+export const getRoomIdByNumber = async (roomNumber) => {
+  try {
+    const response = await api.get(`${API_URL}/${roomNumber}`);
+    return response.data._id; // Assuming the response contains the room's _id
+  } catch (error) {
+    console.error("Error fetching room by number:", error);
+    throw error;
+  }
+};
+

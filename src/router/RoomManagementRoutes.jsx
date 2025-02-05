@@ -4,13 +4,14 @@ import AvailableRooms from "../components/roomcomponents/AvailableRooms";
 import AllocateRoom from "../components/roomcomponents/AllocateRoom";
 import CreateRoom from "../components/roomcomponents/CreateRoom";
 import UpdateRoomStatus from "../components/roomcomponents/UpdateRoomStatus";
+import RoomManagement from "../components/roomcomponents/RoomManagement";
 
 const RoomManagementRoutes = () => {
   return (
     
       <Routes>
-        <Route path="available" element={<AvailableRooms />} />
-        <Route path="allocate" element={<AllocateRoom />} />
+        <Route path="" element={<RoomManagement />} />
+        {/* <Route path="allocate" element={<AllocateRoom />} /> */}
         <Route path="create" element={<CreateRoom />} />
         <Route path="update" element={<UpdateRoomStatus />} />
       </Routes>

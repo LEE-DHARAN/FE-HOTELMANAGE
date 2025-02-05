@@ -9,7 +9,7 @@ const BillingManagementRoutes = () => {
   return (
     
       <Routes>
-        <Route path="" element={<BillingList />} />
+        <Route path="/" element={<BillingList />} />
         <Route path="create" element={<CreateBilling />} />
         <Route path=":id" element={<BillingDetails />} />
         <Route path="update/:id" element={<UpdateBillingStatus />} />

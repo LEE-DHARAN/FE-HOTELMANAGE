@@ -24,7 +24,7 @@ const AvailableRooms = () => {
     const fetchResidents = async () => {
       try {
         const response = await api.get("/resident");
-        setResidents(response.data.filter((resident) => !resident.roomId)); // Only residents with no room
+        setResidents(response.data.filter((resident) => !resident.roomId)); 
       } catch (err) {
         setError("Failed to fetch residents");
       }
@@ -36,23 +36,23 @@ const AvailableRooms = () => {
 
   const handleRoomClick = (roomId) => {
     setSelectedRoom(roomId);
-    setShowResidentDropdown(true); // Show the dropdown when a room is clicked
+    setShowResidentDropdown(true); 
   };
 
   const handleAllocateRoom = async () => {
-    console.log(selectedResident)
-    console.log(selectedRoom)
     try {
-      await api.post("/rooms/allocate", {
+      const response = await api.post("/rooms/allocate", {
         residentId: selectedResident,
         roomId: selectedRoom,
       });
-      setShowResidentDropdown(false); // Hide resident dropdown after allocation
-      setSelectedRoom("");     // Reset selected room
-      setSelectedResident(""); // Reset selected resident
+      setShowResidentDropdown(false); 
+      setSelectedRoom("");     
+      setSelectedResident("");
+      console.log(response.data.msg)
       setSuccessMessage(response.data.msg);
+      console.log(response.data.room)
       setRooms(response.data.room);
-      setError(""); // Clear any previous error
+      setError(""); 
     } catch (err) {
       setError("Failed to allocate room");
       setSuccessMessage(""); 

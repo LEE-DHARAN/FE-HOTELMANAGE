@@ -7,18 +7,17 @@ const UpdateRoomStatus = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const statusData = { roomNumber, status };
-    try {
-      const response = await updateRoomStatus(statusData);
-      setMessage(`Room ${response.roomNumber} status updated to ${status}`);
-      setRoomNumber("");
-      setStatus("available");
-    } catch (err) {
-      setError("Failed to update room status");
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await updateRoomStatus(roomNumber, { status });
+    setMessage(`Room ${response.roomNumber} status updated to ${status}`);
+    setRoomNumber("");
+    setStatus("available");
+  } catch (err) {
+    setError("Failed to update room status");
+  }
+};
 
   return (
     <div>

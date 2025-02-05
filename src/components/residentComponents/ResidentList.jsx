@@ -38,7 +38,7 @@
 
 // export default ResidentList;
 import React, { useState, useEffect } from "react";
-import api from "../../services/api"; // Assuming this calls the API
+import api from "../../services/api";
 
 const ResidentList = () => {
   const [residents, setResidents] = useState([]);

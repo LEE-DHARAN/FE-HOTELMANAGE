@@ -1,23 +1,43 @@
 import React, { useState } from "react";
-import { allocateRoom } from "../../services/roomService";
+import { allocateRoom, getRoomIdByNumber } from "../../services/roomService"; 
 
 const AllocateRoom = () => {
   const [roomNumber, setRoomNumber] = useState("");
-  const [residentId, setResidentId] = useState("");
+  const [residentId, setResidentId] = useState(""); 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
+    if (!roomNumber || !residentId) {
+      setError("Both room number and resident ID are required");
+      return;
+    }
+
     try {
-      const roomData = { roomNumber, residentId };
+    
+      const roomId = await getRoomIdByNumber(roomNumber);
+
+      if (!roomId) {
+        setError("Room not found");
+        return;
+      }
+
+      const roomData = { roomId, residentId };
+
+      
       const response = await allocateRoom(roomData);
+
+      
       setMessage(
-        `Room ${response.roomNumber} successfully allocated to resident ${residentId}`
+        `Room ${roomNumber} successfully allocated to resident ${residentId}`
       );
       setRoomNumber("");
       setResidentId("");
     } catch (err) {
+      console.error("Error allocating room:", err);
       setError("Failed to allocate room");
     }
   };
