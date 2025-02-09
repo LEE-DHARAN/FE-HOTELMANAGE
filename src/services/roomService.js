@@ -62,7 +62,7 @@ export const deleteRoom = async (roomNumber) => {
 export const getRoomIdByNumber = async (roomNumber) => {
   try {
     const response = await api.get(`${API_URL}/${roomNumber}`);
-    return response.data._id; // Assuming the response contains the room's _id
+    return response.data._id; 
   } catch (error) {
     console.error("Error fetching room by number:", error);
     throw error;

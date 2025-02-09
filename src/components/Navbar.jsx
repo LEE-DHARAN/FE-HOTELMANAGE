@@ -8,12 +8,7 @@ function Navbar() {
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="font-bold text-xl">Hostel Management</h1>
         <div className="space-x-6 hidden md:flex">
-          <Link
-            to="/"
-            className="hover:text-blue-300 transition-colors duration-300"
-          >
-            Dashboard
-          </Link>
+         
           <Link
             to="/rooms"
             className="hover:text-blue-300 transition-colors duration-300"
@@ -46,9 +41,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="md:hidden">
-          <button className="text-white">
-           
-          </button>
+          <button className="text-white"></button>
         </div>
       </div>
     </nav>

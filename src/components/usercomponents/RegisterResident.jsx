@@ -20,7 +20,7 @@ const RegisterResident = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error state
+    setError(""); 
 
     try {
       const response = await api.post("register", formData);
