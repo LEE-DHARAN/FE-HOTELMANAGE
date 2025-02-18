@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios"; // Make sure to install axios
+/*import React, { useEffect, useState } from "react";
+import axios from "axios"; 
 
 function Dashboard() {
   const [rooms, setRooms] = useState([]);
@@ -11,7 +11,7 @@ function Dashboard() {
   const fetchAvailableRooms = async () => {
     try {
       const roomsData = await axios.get("/api/rooms/available");
-      setRooms(roomsData.data); // Store the data (array of rooms)
+      setRooms(roomsData.data); 
     } catch (err) {
       setError("Failed to load available rooms");
     }
@@ -21,7 +21,7 @@ function Dashboard() {
   const fetchMaintenanceRequests = async () => {
     try {
       const response = await axios.get("/api/maintenance/requests");
-      setMaintenanceRequests(response.data); // Store the maintenance requests
+      setMaintenanceRequests(response.data); 
     } catch (error) {
       setError("Failed to load maintenance requests");
     }
@@ -33,14 +33,14 @@ function Dashboard() {
   }, []);
 
   // Calculate available rooms and occupied rooms
-  const availableRoomsCount = rooms.length; // Get the length of available rooms
+  const availableRoomsCount = rooms.length; 
   const occupiedRooms = totalRooms - availableRoomsCount;
-  const pendingMaintenance = maintenanceRequests.length; // Get the length of maintenance requests
+  const pendingMaintenance = maintenanceRequests.length;
 
   return (
     <div className="container mx-auto p-8">
       <h2 className="text-2xl font-bold mb-4">Welcome to the Hostel Management System</h2>
-      {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
+      {error && <p className="text-red-500">{error}</p>} 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-green-200 p-4 rounded shadow">
           <p>Total Rooms: {totalRooms}</p>
@@ -57,4 +57,21 @@ function Dashboard() {
   );
 }
 
+export default Dashboard;*/
+
+
+
+import React from "react";
+
+function Dashboard() {
+  return (
+    <div className="container mx-auto p-8">
+      <h2 className="text-2xl font-bold mb-4">
+        Welcome to the Hostel Management System
+      </h2>
+    </div>
+  );
+}
+
 export default Dashboard;
+
