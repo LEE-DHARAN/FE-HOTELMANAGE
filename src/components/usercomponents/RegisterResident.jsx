@@ -3,16 +3,14 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
 const RegisterResident = () => {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    contactNumber: ""
+    contactNumber: "",
   });
-
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,19 +18,28 @@ const RegisterResident = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
+
+    if (!formData.name || !formData.email || !formData.password || !formData.contactNumber) {
+      setError("All fields are required.");
+      return;
+    }
 
     try {
       const response = await api.post("register", formData);
-      localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+
+      if (response.status === 200) {
+        alert("Registration successful!");
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Failed to register. Please try again.");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center py-10 bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4">Register Resident</h2>
 

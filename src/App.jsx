@@ -9,7 +9,10 @@ import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import RegisterResident from "./components/usercomponents/RegisterResident";
-
+import Dashboard from "./components/Dashboard";
+import { Navigate
+  
+ } from "react-router-dom";
 function App() {
   return (
     <Router>
@@ -18,8 +21,8 @@ function App() {
 
         <main className="flex-grow">
           <Routes>
-          
-            <Route path="/register" element={<RegisterResident />} />
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/rooms/*" element={<RoomManagementRoutes />} />
             <Route path="/residents/*" element={<ResidentManagementRoutes />} />
             <Route path="/billing/*" element={<BillingManagementRoutes />} />
@@ -37,9 +40,6 @@ function App() {
     </Router>
   );
 }
-
-
-
 
 export default App;
 
