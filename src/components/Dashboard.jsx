@@ -57,7 +57,7 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;*/
+export default Dashboard;
 
 
 
@@ -73,5 +73,26 @@ function Dashboard() {
   );
 }
 
+export default Dashboard;*/
+
+
+import React from "react";
+
+function Dashboard() {
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-12 rounded-xl shadow-xl max-w-md w-full text-center">
+        <h2 className="text-3xl font-semibold text-blue-600 mb-6">
+          Welcome to the Hostel Management System
+        </h2>
+        <p className="text-gray-500 text-lg">
+          Manage your hostel rooms, requests, and more with ease.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default Dashboard;
+
 
