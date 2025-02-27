@@ -1,44 +1,6 @@
-
-// import React from "react";
-// import api from "../../services/api"; 
-
-// const ResidentList = ({
-//   residents,
-//   setResidents,
-//   setError,
-//   setSuccessMessage,
-// }) => {
-//   const handleDeleteResident = async (id) => {
-//     setError(null);
-//     setSuccessMessage(""); 
-
-//     try {
-//       await api.delete(`/resident/${id}`);
-//       setResidents(residents.filter((resident) => resident._id !== id)); 
-//       setSuccessMessage("Resident deleted successfully");
-//     } catch (error) {
-//       setError(error.response?.data?.msg || "Error deleting resident");
-//     }
-//   };
-
-//   return (
-//     <ul>
-//       {residents.map((resident) => (
-//         <li key={resident._id}>
-//           <strong>{resident.name}</strong> - {resident.contact} -{" "}
-//           {resident.email}
-//           <button onClick={() => handleDeleteResident(resident._id)}>
-//             Delete
-//           </button>
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
-// export default ResidentList;
 import React, { useState, useEffect } from "react";
 import api from "../../services/api";
+import { FaEdit, FaTrash } from "react-icons/fa"; // Import the edit and delete icons
 
 const ResidentList = () => {
   const [residents, setResidents] = useState([]);
@@ -48,7 +10,7 @@ const ResidentList = () => {
     const fetchResidents = async () => {
       try {
         const response = await api.get(`/resident`);
-        console.log(response.data)
+        console.log(response.data);
         setResidents(response.data);
       } catch (error) {
         console.error("Error fetching resident list", error);
@@ -59,6 +21,16 @@ const ResidentList = () => {
 
     fetchResidents();
   }, []);
+
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/resident/${id}`);
+      setResidents(residents.filter((resident) => resident._id !== id));
+    } catch (error) {
+      console.error("Error deleting resident", error);
+    }
+  };
 
   return (
     <div className="p-6">
@@ -72,8 +44,16 @@ const ResidentList = () => {
             <h4 className="text-xl font-semibold">{resident.name}</h4>
             <p className="text-sm text-gray-600">Contact: {resident.contact}</p>
             {resident.roomId && (
-            <p className="text-sm text-gray-600">Room Number: {resident.roomId.roomNumber}</p>
-          )}
+              <p className="text-sm text-gray-600">Room Number: {resident.roomId.roomNumber}</p>
+            )}
+            <div className="mt-4 flex justify-end space-x-3">
+              <button
+                onClick={() => handleDelete(resident._id)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <FaTrash size={20} />
+              </button>
+            </div>
           </div>
         ))}
       </div>

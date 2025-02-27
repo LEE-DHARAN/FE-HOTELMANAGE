@@ -6,6 +6,7 @@ const MaintenanceManagement = () => {
   const [showForm, setShowForm] = useState(false);
   const [viewRequests, setViewRequests] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const userRole = localStorage.getItem("role"); // Get user role
 
   const closeForm = () => setShowForm(false);
   const closeRequests = () => setViewRequests(false);
@@ -15,33 +16,34 @@ const MaintenanceManagement = () => {
       <h2 className="text-2xl font-bold mb-4">Maintenance Management</h2>
 
       <div className="flex gap-4 mb-4">
-        <button
-          onClick={() => {
-            setViewRequests(false);
-            setShowForm(true);
-          }}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Create Maintenance Request
-        </button>
-        <button
-          onClick={() => {
-            setViewRequests(true);
-            setShowForm(false);
-          }}
-          className="bg-green-500 text-white px-4 py-2 rounded"
-        >
-          View Maintenance Requests
-        </button>
+        {userRole === "user" && (
+          <button
+            onClick={() => {
+              setViewRequests(false);
+              setShowForm(true);
+            }}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Create Maintenance Request
+          </button>
+        )}
+        {userRole === "admin" && (
+          <button
+            onClick={() => {
+              setViewRequests(true);
+              setShowForm(false);
+            }}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            View Maintenance Requests
+          </button>
+        )}
       </div>
 
       {successMessage && <p className="text-green-600">{successMessage}</p>}
 
-      {showForm ? (
-        <MaintenanceForm closeForm={closeForm} setSuccessMessage={setSuccessMessage} />
-      ) : viewRequests ? (
-        <MaintenanceList closeRequests={closeRequests} />
-      ) : null}
+      {showForm && <MaintenanceForm closeForm={closeForm} setSuccessMessage={setSuccessMessage} />}
+      {viewRequests && <MaintenanceList closeRequests={closeRequests} />}
     </div>
   );
 };

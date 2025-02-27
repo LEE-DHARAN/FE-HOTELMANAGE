@@ -9,6 +9,7 @@ const LogoutResident = () => {
     try {
       await axios.post("http://localhost:3001/api/logout"); 
       localStorage.removeItem("token"); 
+      localStorage.removeItem("role");
       navigate("/login"); 
     } catch (error) {
       console.error("Error logging out:", error);

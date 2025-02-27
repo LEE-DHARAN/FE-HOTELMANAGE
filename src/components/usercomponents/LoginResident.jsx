@@ -21,6 +21,8 @@ const LoginForm = () => {
       if (response.status === 200) {
         // If the login is successful, store the token in localStorage
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("email", response.data.email);
 
         // Redirect the user to the dashboard
         navigate("/dashboard");

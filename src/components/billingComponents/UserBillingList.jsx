@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
-const BillingList = () => {
+const UserBillingList = () => {
   const [billingRecords, setBillingRecords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-
-  const handleViewBilling = (id) => {
-    navigate(`/billing/${id}`);
-  };
-
-  const handleDeleteBilling = async (id) => {
-    try {
-      await api.delete(`/billing/${id}`);
-      setBillingRecords(billingRecords.filter((billing) => billing._id !== id));
-    } catch (error) {
-      console.error("Error deleting billing record", error);
-    }
-  };
-
-  const handleCreateBilling = () => {
-    navigate("/billing/create");
-  };
 
   useEffect(() => {
     const fetchBillingRecords = async () => {
+      const email = localStorage.getItem("email");
+
+      if (!email) {
+        console.error("No email found in localStorage.");
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await api.get("/billing");
+        const response = await api.get(`/billing/email/${email}`);
         setBillingRecords(response.data);
       } catch (error) {
         console.error("Error fetching billing records", error);
@@ -42,9 +31,9 @@ const BillingList = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10">
       <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
-        <div className="mb-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-center text-gray-800">Billing Records</h1>
-        </div>
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">
+          My Billing Records
+        </h1>
 
         {loading ? (
           <p className="text-center text-gray-600 text-lg">Loading...</p>
@@ -53,18 +42,15 @@ const BillingList = () => {
             <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-sm">
               <thead className="bg-blue-500 text-white">
                 <tr>
-                  <th className="px-4 py-2 text-left">Resident</th>
                   <th className="px-4 py-2 text-left">Room</th>
                   <th className="px-4 py-2 text-left">Amount</th>
                   <th className="px-4 py-2 text-left">Status</th>
                   <th className="px-4 py-2 text-left">Due Date</th>
-                  <th className="px-4 py-2 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {billingRecords.map((billing) => (
                   <tr key={billing._id} className="border-b hover:bg-gray-100">
-                    <td className="px-4 py-2">{billing.residentId.name}</td>
                     <td className="px-4 py-2">{billing.roomId.roomNumber}</td>
                     <td className="px-4 py-2">${billing.amount}</td>
                     <td className="px-4 py-2">
@@ -81,20 +67,6 @@ const BillingList = () => {
                     <td className="px-4 py-2">
                       {new Date(billing.dueDate).toLocaleDateString()}
                     </td>
-                    <td className="px-4 py-2 text-center">
-                      <button
-                        onClick={() => handleViewBilling(billing._id)}
-                        className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 mr-2"
-                      >
-                        View
-                      </button>
-                      <button
-                        onClick={() => handleDeleteBilling(billing._id)}
-                        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                      >
-                        Delete
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -110,4 +82,4 @@ const BillingList = () => {
   );
 };
 
-export default BillingList;
+export default UserBillingList;

@@ -8,6 +8,7 @@ const RegisterResident = () => {
     email: "",
     password: "",
     contactNumber: "",
+    role: "user", // Default role
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const RegisterResident = () => {
     e.preventDefault();
     setError("");
 
-    if (!formData.name || !formData.email || !formData.password || !formData.contactNumber) {
+    if (!formData.name || !formData.email || !formData.password || !formData.contactNumber || !formData.role) {
       setError("All fields are required.");
       return;
     }
@@ -31,6 +32,8 @@ const RegisterResident = () => {
       if (response.status === 200) {
         alert("Registration successful!");
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("email", response.data.email);
         navigate("/dashboard");
       }
     } catch (err) {
@@ -85,6 +88,17 @@ const RegisterResident = () => {
             required
             className="w-full px-3 py-2 border rounded"
           />
+
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded"
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
 
           <button
             type="submit"

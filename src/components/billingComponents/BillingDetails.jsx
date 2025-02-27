@@ -23,32 +23,58 @@ const BillingDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-600 text-lg">Loading...</p>
+      </div>
+    );
   }
 
   if (!billing) {
-    return <p>Billing record not found</p>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500 text-lg">Billing record not found</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Billing Details</h1>
-      <p>
-        <strong>Resident:</strong> {billing.residentId.name}
-      </p>
-      <p>
-        <strong>Room Number:</strong> {billing.roomId.roomNumber}
-      </p>
-      <p>
-        <strong>Amount:</strong> {billing.amount}
-      </p>
-      <p>
-        <strong>Status:</strong> {billing.status}
-      </p>
-      <p>
-        <strong>Due Date:</strong>{" "}
-        {new Date(billing.dueDate).toLocaleDateString()}
-      </p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-700">
+          Billing Details
+        </h2>
+        <div className="space-y-3">
+          <p className="text-gray-700">
+            <strong className="font-semibold text-gray-800">Resident:</strong>{" "}
+            {billing.residentId.name}
+          </p>
+          <p className="text-gray-700">
+            <strong className="font-semibold text-gray-800">Room Number:</strong>{" "}
+            {billing.roomId.roomNumber}
+          </p>
+          <p className="text-gray-700">
+            <strong className="font-semibold text-gray-800">Amount:</strong> $
+            {billing.amount}
+          </p>
+          <p className="text-gray-700">
+            <strong className="font-semibold text-gray-800">Status:</strong>{" "}
+            <span
+              className={`px-2 py-1 rounded-full text-white text-sm ${
+                billing.status === "Paid"
+                  ? "bg-green-500"
+                  : "bg-red-500"
+              }`}
+            >
+              {billing.status}
+            </span>
+          </p>
+          <p className="text-gray-700">
+            <strong className="font-semibold text-gray-800">Due Date:</strong>{" "}
+            {new Date(billing.dueDate).toLocaleDateString()}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
