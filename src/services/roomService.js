@@ -1,6 +1,6 @@
 
 import api from "../services/api";
-const API_URL = "http://localhost:3001/api/rooms"; 
+//const API_URL = "http://localhost:3001/api/rooms"; 
 
 // Fetch all available rooms
 export const getAvailableRooms = async () => {
@@ -16,7 +16,7 @@ export const getAvailableRooms = async () => {
 // Allocate a room to a resident
 export const allocateRoom = async (roomData) => {
   try {
-    const response = await api.post(`${API_URL}/allocate`, roomData);
+    const response = await api.post(`rooms/allocate`, roomData);
     return response.data;
   } catch (error) {
     console.error("Error allocating room:", error);
