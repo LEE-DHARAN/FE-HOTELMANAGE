@@ -1,6 +1,6 @@
 
 import api from "../services/api";
-//const API_URL = "http://localhost:3001/api/rooms"; 
+
 
 // Fetch all available rooms
 export const getAvailableRooms = async () => {
