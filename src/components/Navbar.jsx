@@ -64,6 +64,12 @@ function Navbar() {
           {isLoggedIn && userRole === "user" && (
             <>
               <Link
+                to="/maintenance"
+                className="hover:text-blue-300 transition-colors duration-300"
+              >
+                Maintenance
+              </Link>
+              <Link
                 to="/billing/user"
                 className="hover:text-blue-300 transition-colors duration-300"
               >
